@@ -5,6 +5,9 @@ on:
   push:
     branches:
       - main  # Запускать workflow при push в основную ветку
+# Запускать workflow при открытии и синхронизации pull request
+  pull_request:
+    types: [opened, synchronize] 
   workflow_dispatch:  # Позволяет запускать workflow вручную через интерфейс GitHub
 
 # Определяем задачи
