@@ -34,4 +34,7 @@ jobs:
 # Печатаем все данные из базы данных
       - name: Print all data from the database
         run: python db.py --print_all_data
+# Запуск приложения
+      - name: Run the API
+        run: python app.py --host 0.0.0.0 --port 5000
 
