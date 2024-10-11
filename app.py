@@ -86,7 +86,7 @@ if __name__ == "__main__":
         return arg_value
     # Create the table
     parser = argparse.ArgumentParser()
-    parser.add_argument('--host', help='deletes all data', default="localhost", type=ipv4_or_localhost_regex_type)
+    parser.add_argument('--host', help='deletes all data', default="0.0.0.0", type=ipv4_or_localhost_regex_type)
     parser.add_argument('--port', help='add default data', default=5000, type=int)
     args = parser.parse_args()
     print(args.host, args.port)
