@@ -1,4 +1,4 @@
-name: python_pr
+name: Susak Python CI
 
 # Определяем, когда запускать workflow
 on:
@@ -6,38 +6,39 @@ on:
     branches:
       - main  # Запускать workflow при push в основную ветку
   workflow_dispatch:  # Позволяет запускать workflow вручную через интерфейс GitHub
+
+# Определяем задачи
 jobs:
   build:
-# Используем общедоступный runner Ubuntu в Github runner нет ORACLE lINUX только ubuntu
-    runs-on: ubuntu-latest  
-# клонирование текущего репозитария 
+    # Используем общедоступный runner Ubuntu
+    runs-on: ubuntu-latest
+    
+    # Шаги для выполнения
     steps:
+      # Клонирование репозитория
       - name: Checkout code
         uses: actions/checkout@v3
-# Установка Python
+
+      # Установка Python
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.10'   
-# Установка зависимостей
+          python-version: '3.10'  # Указываем версию Python 3.10, как требуется
+
+      # Установка зависимостей
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
-# Удаляем все данные из базы данных
-      - name: Delete all data from the database
-        run: python db.py --delete_all_data
-# Добавляем стандартные данные в базу данных
-      - name: Add default data to the database
+
+      # Выполнение скрипта для создания/обновления базы данных
+      - name: Run db.py script to initialize the database
         run: python db.py --add_default_data
-# Печатаем все данные из базы данных
-      - name: Print all data from the database
-        run: python db.py --print_all_data
-# Запуск приложения
+
+      # Запуск приложения
       - name: Run the API
         run: python app.py --host 0.0.0.0 --port 5000
-# Проверка, что API работает корректно
+
+      # Проверка, что API работает корректно
       - name: Test API endpoint
         run: curl --fail http://localhost:5000/your-endpoint
-# Если запрос к API вернет статус 200, шаг будет успешным. 
-# Если нет, workflow завершится с ошибкой.
