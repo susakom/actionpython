@@ -41,7 +41,7 @@ jobs:
 
       # Проверка, что API работает корректно
       - name: Test API endpoint
-        run: curl --fail http://localhost:5000/your-endpoint
+        run: curl --fail http://0.0.0.0:5000/api/products
         
       # Остановка сервера Flask
       - name: Stop the API
