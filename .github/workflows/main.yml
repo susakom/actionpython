@@ -37,7 +37,7 @@ jobs:
 
       # Запуск приложения
       - name: Run the API
-        run: nohup python app.py --host 0.0.0.0 --port 5000 & $! > api.pid 
+        run: nohup python app.py --host 0.0.0.0 --port 5000 & echo $! > api.pid 
 
       # Проверка, что API работает корректно
       - name: Test API endpoint
