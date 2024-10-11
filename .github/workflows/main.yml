@@ -25,4 +25,13 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
-          
+# Удаляем все данные из базы данных
+      - name: Delete all data from the database
+        run: python db.py --delete_all_data
+# Добавляем стандартные данные в базу данных
+      - name: Add default data to the database
+        run: python db.py --add_default_data
+# Печатаем все данные из базы данных
+      - name: Print all data from the database
+        run: python db.py --print_all_data
+
