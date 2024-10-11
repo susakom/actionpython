@@ -42,6 +42,16 @@ jobs:
       # Проверка, что API работает корректно
       - name: Test API endpoint
         run: curl --fail http://0.0.0.0:5000/api/products
+      # Добавление продукта для тестирования
+      - name: Add a test product
+        run: |
+          curl -X POST http://0.0.0.0:5000/api/products -H "Content-Type: application/json" -d '{"name": "Eggs", "price": 12}'
+
+      # Проверка, что продукт доступен по ID
+      - name: Test API endpoint for a specific product
+        run: curl --fail http://0.0.0.0:5000/api/products/6
+
+        
         
       # Остановка сервера Flask
       - name: Stop the API
