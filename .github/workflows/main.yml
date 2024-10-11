@@ -37,8 +37,12 @@ jobs:
 
       # Запуск приложения
       - name: Run the API
-        run: python app.py --host 0.0.0.0 --port 5000
+        run: nohup python app.py --host 0.0.0.0 --port 5000 & $! > api.pid 
 
       # Проверка, что API работает корректно
       - name: Test API endpoint
         run: curl --fail http://localhost:5000/your-endpoint
+        
+      # Остановка сервера Flask
+      - name: Stop the API
+        run: kill $(cat api.pid)
