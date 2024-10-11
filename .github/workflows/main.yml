@@ -9,8 +9,7 @@ on:
 jobs:
   build:
 # Используем общедоступный runner Ubuntu в Github runner нет ORACLE lINUX только ubuntu
-    runs-on: ubuntu-latest
-    
+    runs-on: ubuntu-latest  
 # клонирование текущего репозитария 
     steps:
       - name: Checkout code
@@ -37,4 +36,8 @@ jobs:
 # Запуск приложения
       - name: Run the API
         run: python app.py --host 0.0.0.0 --port 5000
-
+# Проверка, что API работает корректно
+      - name: Test API endpoint
+        run: curl --fail http://localhost:5000/your-endpoint
+# Если запрос к API вернет статус 200, шаг будет успешным. 
+# Если нет, workflow завершится с ошибкой.
