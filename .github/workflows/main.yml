@@ -1,1 +1,18 @@
-# python project on git action Susak
+name: python_pr
+
+# Определяем, когда запускать workflow
+on:
+  push:
+    branches:
+      - main  # Запускать workflow при push в основную ветку
+  workflow_dispatch:  # Позволяет запускать workflow вручную через интерфейс GitHub
+jobs:
+  build:
+    # Используем общедоступный runner Ubuntu в Github runner нет ORACLE lINUX только ubuntu
+    runs-on: ubuntu-latest
+    
+    # клонирование текущего репозитария 
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        
