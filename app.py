@@ -79,16 +79,5 @@ api.add_resource(Product, "/api/products/<int:product_id>")
 
 
 if __name__ == "__main__":
-    def ipv4_or_localhost_regex_type(arg_value):
-        ipv4_or_localhost_regex = re.compile(
-            r"^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(\.)){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$|^(localhost|127(\.[0-9]+){0,2}\.[0-9]+)$")
-        if not ipv4_or_localhost_regex.match(arg_value):
-            raise argparse.ArgumentTypeError("invalid ipv4 or localhost value")
-        return arg_value
-    # Create the table
-    parser = argparse.ArgumentParser()
-    parser.add_argument('--host', help='deletes all data', default="0.0.0.0", type=ipv4_or_localhost_regex_type)
-    parser.add_argument('--port', help='add default data', default=5000, type=int)
-    args = parser.parse_args()
-    print(args.host, args.port)
-    app.run(host=args.host, port=args.port, debug=True)
+   port = int(os.environ.get("PORT", 5000))  # Получаем порт из переменной окружения, по умолчанию 5000
+   app.run(host="0.0.0.0", port=port, debug=True)
