@@ -86,8 +86,8 @@ jobs:
         run: python db.py --add_default_data
 
       # Запуск приложения
-      - name: Run the API
-        run: nohup python app.py --host 0.0.0.0 --port 5000 & echo $! > api.pid 
+    #  - name: Run the API
+     #   run: nohup python app.py --host 0.0.0.0 --port 5000 & echo $! > api.pid 
 
 
       
