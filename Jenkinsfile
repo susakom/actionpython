@@ -11,7 +11,7 @@ pipeline {
 
         stage('Set Up Environment') {
             steps {
-                bat '''
+                sh '''
                 sudo apt-get update
                 sudo apt-get install -y python3 python3-pip
                 python3 --version
@@ -21,7 +21,7 @@ pipeline {
 
         stage('Install Dependencies') {
             steps {
-                bat 'pip3 install -r requirements.txt'  // Установка зависимостей
+                sh 'pip3 install -r requirements.txt'  // Установка зависимостей
             }
         }
     }
