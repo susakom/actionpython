@@ -21,7 +21,7 @@ pipeline {
 
         stage('Install Dependencies') {
             steps {
-                sh 'pip3 install -r requirements.txt'  // Установка зависимостей
+                bat 'pip3 install -r requirements.txt'  // Установка зависимостей
             }
         }
     }
