@@ -11,7 +11,7 @@ pipeline {
 
         stage('Set Up Environment') {
             steps {
-                sh '''
+                bat '''
                 sudo apt-get update
                 sudo apt-get install -y python3 python3-pip
                 python3 --version
